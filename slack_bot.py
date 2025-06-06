@@ -38,25 +38,19 @@ def format_prs_for_slack(pr_dto_list, repo_owner, repo_name):
     return "\n".join(message_lines)
 
 if __name__ == '__main__':
-    # load_dotenv()  # Load environment variables from .env file
-    # slack_bot_token = os.getenv('SLACK_BOT_TOKEN')
-    # slack_channel_id = os.getenv('SLACK_CHANNEL_ID')
-    #
-    # if not slack_bot_token:
-    #     print("Error: SLACK_BOT_TOKEN not found in environment variables.")
-    #     exit(1)
-    #
-    # client = WebClient(token=slack_bot_token)
-    #
-    # # Example usage
-    # channel_id = 'C1234567890'  # Replace with your Slack channel ID
-    # message_text = "Hello, Slack!"
-    #
-    # if send_slack_message(channel_id, message_text, client):
-    #     print("Message sent successfully.")
-    # else:
-    #     print("Failed to send message.")
-    all_team_prs = get_open_pull_requests_for_list_of_repos('shivneelakantan-wk',
-                                                   ['EH-github-slack-bot'],
-                                                   {'shivneelakantan-wk'}
-                                                   )
+    load_dotenv()
+    slack_bot_token = os.getenv('SLACK_BOT_TOKEN')
+    slack_channel_id = os.getenv('SLACK_CHANNEL_ID')
+
+    if not slack_bot_token:
+        print("Error: SLACK_BOT_TOKEN not found in environment variables.")
+        exit(1)
+
+    client = WebClient(token=slack_bot_token)
+
+    message_text = "Hello, Slack!"
+
+    if send_slack_message(slack_channel_id, message_text, client):
+        print("Message sent successfully.")
+    else:
+        print("Failed to send message.")
