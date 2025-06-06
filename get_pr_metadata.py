@@ -39,3 +39,5 @@ def get_open_pull_requests(repo_owner, repo_name):
     except:
         pass
 
+if __name__ == '__main__':
+    get_open_pull_requests('shivneelakantan-wk', 'EH-github-slack-bot')
