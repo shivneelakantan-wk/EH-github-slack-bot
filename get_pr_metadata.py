@@ -6,10 +6,10 @@ from github.Auth import Token
 
 class PR_DTO:
     def __init__(self, pr_title, pr_author_username, pr_url, pr_date):
-        self.pr_title = pr_title
-        self.pr_author_username = pr_author_username
-        self.pr_url = pr_url
-        self.pr_date = pr_date
+        self.title = pr_title
+        self.author_username = pr_author_username
+        self.url = pr_url
+        self.date = pr_date
 
 
 def _get_open_pull_requests_for_repo(repo_owner, repo_name, team_member_usernames):
@@ -19,6 +19,7 @@ def _get_open_pull_requests_for_repo(repo_owner, repo_name, team_member_username
     :param repo_name:
     :return:
     '''
+    load_dotenv()
     github_token = os.getenv('GITHUB_PERSONAL_ACCESS_TOKEN')
 
     if not github_token:
@@ -72,7 +73,7 @@ def get_open_pull_requests_for_list_of_repos(repo_owner, repo_names, team_member
         prs = _get_open_pull_requests_for_repo(repo_owner, repo_name, team_member_usernames)
         if prs:
             teams_prs.extend(prs)
-    print(f'found {len(teams_prs)} open PRs for {repo_owner} in repos {repo_names}')
+
     return teams_prs
 
 def send_slack_message(channel_id, message_text, client):
@@ -96,4 +97,4 @@ if __name__ == '__main__':
                                                    {'shivneelakantan-wk'}
                                                    )
     for pr in prs:
-        print(f'Title: {pr.pr_title}, Author: {pr.pr_author_username}, URL: {pr.pr_url}, Date: {pr.pr_date}')
+        print(f'Title: {pr.title}, Author: {pr.author_username}, URL: {pr.url}, Date: {pr.date}')
