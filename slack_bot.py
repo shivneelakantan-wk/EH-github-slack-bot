@@ -30,7 +30,7 @@ def format_prs_for_slack(pr_dto_list, repo_owner, repo_name):
     if not pr_dto_list:
         return f"No open PRs found for {repo_owner}/{repo_name}."
 
-    message_lines = [f"Open PRs for *{repo_owner}/{repo_name}*:\n"]
+    message_lines = [f"### Open PRs for *{repo_owner}/{repo_name}*:\n"]
 
     for pr in pr_dto_list:
         message_lines.append(f"- *{pr.title}* by @{pr.author_username} - <{pr.url}|View PR> (Created on {pr.date})")
