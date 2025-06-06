@@ -1,0 +1,1 @@
+Github bot to notify teams via slack all outstanding PRs made by their team across all relevant repositories.
